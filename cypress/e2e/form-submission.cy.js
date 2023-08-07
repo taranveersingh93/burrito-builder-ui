@@ -36,4 +36,14 @@ describe('empty spec', () => {
       cy.get('.order').eq(3).find('li').eq(2).contains('hot sauce')
     })
   })
+
+  it('should not allow more than 2 ingredients', () => {
+    cy.get('form').find('p').contains('Order: Nothing selected')
+    cy.get('button[name="steak"]').click()
+    cy.get('form').find('p').contains('Order: steak')
+    cy.get('button[name="steak"]').click()
+    cy.get('form').find('p').contains('Order: steak, steak')
+    cy.get('button[name="steak"]').click()
+    cy.get('form').find('p').contains('Order: steak, steak')
+  })
 })

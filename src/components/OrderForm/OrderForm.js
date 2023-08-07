@@ -35,7 +35,9 @@ function OrderForm({addOrder}) {
 
   function addIngredient(e) {
     e.preventDefault()
-    setIngredients([...ingredients, e.target.name])
+    if (ingredients.filter(ingredient => ingredient === e.target.name).length < 2) {
+      setIngredients([...ingredients, e.target.name])
+    }
   }
 
   useEffect(() => {

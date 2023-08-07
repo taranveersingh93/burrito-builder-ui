@@ -17,6 +17,11 @@ describe('empty spec', () => {
     cy.get('.order').eq(0).find('li').eq(2).contains('carnitas')
     cy.get('.order').eq(0).find('li').eq(3).contains('queso fresco')
     cy.get('.order').eq(0).find('li').eq(4).contains('jalapeno')
-
+    cy.get('.order').eq(2).find('h3').contains('Alex')
+    cy.get('.order').eq(2).find('li').eq(0).contains('sofritas')
+    cy.get('.order').eq(2).find('li').eq(1).contains('beans')
+    cy.get('.order').eq(2).find('li').eq(2).contains('sour cream')
+    cy.get('.order').eq(2).find('li').eq(3).contains('carnitas')
+    cy.get('.order').eq(2).find('li').eq(4).contains('queso fresco')
   })
 })

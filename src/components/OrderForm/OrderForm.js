@@ -10,8 +10,11 @@ function OrderForm({addOrder}) {
       name: name,
       ingredients: ingredients
     }
-    addOrder(preparedOrder);
-    clearInputs();
+
+    if (preparedOrder.name && preparedOrder.ingredients.length) {
+      addOrder(preparedOrder);
+      clearInputs();
+    }
   }
 
   function clearInputs() {
@@ -49,7 +52,6 @@ function OrderForm({addOrder}) {
         name={ingredient}
         onClick={(e) => {
           addIngredient(e)
-          // clearInputs(e)
         }}
       >
         {ingredient}
@@ -75,7 +77,7 @@ function OrderForm({addOrder}) {
 
       <button onClick={(e) => {
         handleSubmit(e)
-        clearInputs()}}>Submit Order</button>
+       }}>Submit Order</button>
     </form>
   );
 }

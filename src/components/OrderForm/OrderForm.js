@@ -14,6 +14,10 @@ function OrderForm(props) {
     setIngredients([]);
   };
 
+  function handleChange(e) {
+    setName(e.target.value)
+  }
+
   const possibleIngredients = [
     "beans",
     "steak",
@@ -33,7 +37,10 @@ function OrderForm(props) {
       <button
         key={ingredient}
         name={ingredient}
-        // onClick={(e) => }
+        onClick={(e) => {
+          handleSubmit(e)
+          clearInputs(e)
+        }}
       >
         {ingredient}
       </button>
@@ -47,14 +54,18 @@ function OrderForm(props) {
         placeholder="Name"
         name="name"
         value={name}
-        // onChange={(e) => }
+        onChange={(e) => {
+          handleChange(e)
+        }}
       />
 
       {ingredientButtons}
 
       <p>Order: {ingredients.join(", ") || "Nothing selected"}</p>
 
-      <button onClick={(e) => handleSubmit(e)}>Submit Order</button>
+      <button onClick={(e) => {
+        handleSubmit(e)
+        clearInputs()}}>Submit Order</button>
     </form>
   );
 }

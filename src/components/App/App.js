@@ -6,6 +6,11 @@ import OrderForm from "../../components/OrderForm/OrderForm";
 
 function App() {
   const [orders, setOrders] = useState([])
+
+  const addOrder = (newOrder) => {
+    setOrders([...orders, newOrder])
+  }
+
   useEffect(() => {
     if (!orders.length) {
       getOrders()

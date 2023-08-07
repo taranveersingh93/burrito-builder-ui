@@ -8,6 +8,9 @@ function App() {
   const [orders, setOrders] = useState([])
 
   const addOrder = (newOrder) => {
+    console.log(orders, "orders")
+
+    console.log(newOrder, "new order")
     setOrders([...orders, newOrder])
   }
 
@@ -23,7 +26,7 @@ function App() {
     <main className="App">
       <header>
         <h1>Burrito Builder</h1>
-        <OrderForm />
+        <OrderForm addOrder={addOrder} orders={orders}/>
       </header>
 
       <Orders orders={orders} />

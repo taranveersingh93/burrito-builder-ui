@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, orders } from "react";
 
-function OrderForm(props) {
+function OrderForm({addOrder, orders}) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
+    const preparedOrder = {
+      id: orders.length+1,
+      name: name,
+      ingredients: ingredients
+    }
+    addOrder(preparedOrder);
     clearInputs();
   }
 
@@ -16,6 +22,11 @@ function OrderForm(props) {
 
   function handleChange(e) {
     setName(e.target.value)
+  }
+
+  function addIngredient(e) {
+    e.preventDefault()
+    setIngredients([...ingredients, e.target.name])
   }
 
   const possibleIngredients = [
@@ -38,8 +49,8 @@ function OrderForm(props) {
         key={ingredient}
         name={ingredient}
         onClick={(e) => {
-          handleSubmit(e)
-          clearInputs(e)
+          addIngredient(e)
+          // clearInputs(e)
         }}
       >
         {ingredient}

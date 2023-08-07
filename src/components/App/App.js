@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { getOrders, postOrder } from "../../apiCalls";
+import { getOrders, postOrder, deleteOrder } from "../../apiCalls";
 import Orders from "../../components/Orders/Orders";
 import OrderForm from "../../components/OrderForm/OrderForm";
 
 function App() {
   const [orders, setOrders] = useState([])
+
+  const removeOrder = (id) => {
+    deleteOrder(id)
+      .then(responseStatus => {
+        if (responseStatus === 204) {
+          setOrders(orders.filter(order => order.id !== id))
+        }
+      })
+  }
 
   const addOrder = (newOrder) => {
     postOrder(newOrder)
@@ -31,7 +40,7 @@ function App() {
         <OrderForm addOrder={addOrder}/>
       </header>
 
-      <Orders orders={orders} />
+      <Orders orders={orders} removeOrder={removeOrder}/>
     </main>
   );
 }

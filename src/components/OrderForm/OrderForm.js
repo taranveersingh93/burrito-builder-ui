@@ -1,13 +1,12 @@
 import { useState, orders } from "react";
 
-function OrderForm({addOrder, orders}) {
+function OrderForm({addOrder}) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
     const preparedOrder = {
-      id: orders.length+1,
       name: name,
       ingredients: ingredients
     }
